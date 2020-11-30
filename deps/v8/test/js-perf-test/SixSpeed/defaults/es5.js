@@ -11,9 +11,7 @@ new BenchmarkSuite('ES5', [1000], [
 
 function ES5() {
   "use strict";
-  function fn(arg, other) {
-    arg = arg === undefined ? 1 : arg;
-    other = other === undefined ? 3 : other;
+  function fn(arg = 1, other = 3) {
     return other;
   }
 

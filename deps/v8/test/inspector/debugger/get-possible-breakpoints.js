@@ -193,14 +193,11 @@ function checkBreakpoint(message) {
   }
 }
 
-function dumpAllLocations(message, source, lineOffset, columnOffset) {
+function dumpAllLocations(message, source, lineOffset = 0, columnOffset = 0) {
   if (message.error) {
     InspectorTest.logMessage(message);
     return;
   }
-
-  lineOffset = lineOffset || 0;
-  columnOffset = columnOffset || 0;
 
   var sourceLines = source.split('\n')
   var lineOffsets = Array(sourceLines.length).fill(0);
@@ -217,10 +214,7 @@ function dumpAllLocations(message, source, lineOffset, columnOffset) {
   return message;
 }
 
-function dumpBreakLocationInSourceAndResume(message, source, lineOffset, columnOffset) {
-  lineOffset = lineOffset || 0;
-  columnOffset = columnOffset || 0;
-
+function dumpBreakLocationInSourceAndResume(message, source, lineOffset = 0, columnOffset = 0) {
   InspectorTest.log('paused in ' + message.params.callFrames[0].functionName);
   var location = message.params.callFrames[0].location;
   var sourceLines = source.split('\n')

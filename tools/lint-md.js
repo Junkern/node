@@ -343,13 +343,10 @@ function Mark(name, buffer, position, line, column) {
 }
 
 
-Mark.prototype.getSnippet = function getSnippet(indent, maxLength) {
+Mark.prototype.getSnippet = function getSnippet(indent = 4, maxLength = 75) {
   var head, start, tail, end, snippet;
 
   if (!this.buffer) return null;
-
-  indent = indent || 4;
-  maxLength = maxLength || 75;
 
   head = '';
   start = this.position;
@@ -436,9 +433,7 @@ function compileStyleAliases(map) {
   return result;
 }
 
-function Type(tag, options) {
-  options = options || {};
-
+function Type(tag, options = {}) {
   Object.keys(options).forEach(function (name) {
     if (TYPE_CONSTRUCTOR_OPTIONS.indexOf(name) === -1) {
       throw new exception('Unknown option "' + name + '" is met in definition of "' + tag + '" YAML type.');
@@ -3053,9 +3048,8 @@ function readDocument(state) {
 }
 
 
-function loadDocuments(input, options) {
+function loadDocuments(input, options = {}) {
   input = String(input);
-  options = options || {};
 
   if (input.length !== 0) {
 
@@ -3984,9 +3978,7 @@ function inspectNode(object, objects, duplicatesIndexes) {
   }
 }
 
-function dump(input, options) {
-  options = options || {};
-
+function dump(input, options = {}) {
   var state = new State$1(options);
 
   if (!state.noRefs) getDuplicateReferences(input, state);
@@ -4261,8 +4253,7 @@ const parseError = (e, txt, context) => {
 };
 
 class JSONParseError extends SyntaxError {
-  constructor (er, txt, context, caller) {
-    context = context || 20;
+  constructor(er, txt, context = 20, caller) {
     const metadata = parseError(er, txt, context);
     super(metadata.message);
     Object.assign(this, metadata);
@@ -4284,9 +4275,8 @@ const kNewline = Symbol.for('newline');
 const formatRE = /^\s*[{\[]((?:\r?\n)+)([\s\t]*)/;
 const emptyRE = /^(?:\{\}|\[\])((?:\r?\n)+)?$/;
 
-const parseJson = (txt, reviver, context) => {
+const parseJson = (txt, reviver, context = 20) => {
   const parseText = stripBOM(txt);
-  context = context || 20;
   try {
     // get the indentation so that we can save it back nicely
     // if the file starts with {" then we have an indent of '', ie, none
@@ -6285,13 +6275,11 @@ const skipModels = new Set(['gray']);
 
 const styles = Object.create(null);
 
-function applyOptions(obj, options) {
-	options = options || {};
-
-	// Detect level if not set manually
-	const scLevel = stdoutColor ? stdoutColor.level : 0;
-	obj.level = options.level === undefined ? scLevel : options.level;
-	obj.enabled = 'enabled' in options ? options.enabled : obj.level > 0;
+function applyOptions(obj, options = {}) {
+  // Detect level if not set manually
+  const scLevel = stdoutColor ? stdoutColor.level : 0;
+  obj.level = options.level === undefined ? scLevel : options.level;
+  obj.enabled = 'enabled' in options ? options.enabled : obj.level > 0;
 }
 
 function Chalk(options) {
@@ -6859,8 +6847,7 @@ var y = d * 365.25;
  * @api public
  */
 
-var ms = function(val, options) {
-  options = options || {};
+var ms = function(val, options = {}) {
   var type = typeof val;
   if (type === 'string' && val.length > 0) {
     return parse$1(val);
@@ -10803,16 +10790,13 @@ function charSet (s) {
 var slashSplit = /\/+/;
 
 minimatch.filter = filter;
-function filter (pattern, options) {
-  options = options || {};
+function filter(pattern, options = {}) {
   return function (p, i, list) {
     return minimatch(p, pattern, options)
   }
 }
 
-function ext (a, b) {
-  a = a || {};
-  b = b || {};
+function ext(a = {}, b = {}) {
   var t = {};
   Object.keys(b).forEach(function (k) {
     t[k] = b[k];
@@ -11439,8 +11423,7 @@ function makeRe () {
   return this.regexp
 }
 
-minimatch.match = function (list, pattern, options) {
-  options = options || {};
+minimatch.match = function(list, pattern, options = {}) {
   var mm = new Minimatch(pattern, options);
   list = list.filter(function (f) {
     return mm.match(f)
@@ -23460,7 +23443,7 @@ _handleRead(directory, initialAdd, wh, target, dir, depth, throttler) {
     let path = path__default['default'].join(directory, item);
     current.add(item);
 
-    if (entry.stats.isSymbolicLink() && await this._handleSymlink(entry, directory, path, item)) {
+    if (entry.stats.isSymbolicLink() && (await this._handleSymlink(entry, directory, path, item))) {
       return;
     }
 

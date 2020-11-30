@@ -32,8 +32,7 @@ exports.keys = {
 };
 
 // `root` is the self-signed root of the trust chain, not an intermediate ca.
-function load(cert, root) {
-  root = root || cert; // Assume self-signed if no issuer.
+function load(cert, root = cert) {
   const id = {
     key: fixtures.readKey(cert + '-key.pem', 'binary'),
     cert: fixtures.readKey(cert + '-cert.pem', 'binary'),

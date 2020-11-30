@@ -56,10 +56,8 @@ shouldThrow("Object.defineProperty({}, 'foo')");
 shouldThrow("Object.defineProperty({}, 'foo', {get:undefined, value:true}).foo");
 shouldBeTrue("Object.defineProperty({get foo() { return true; } }, 'foo', {configurable:false}).foo");
 
-function createUnconfigurableProperty(o, prop, writable, enumerable) {
-    writable = writable || false;
-    enumerable = enumerable || false;
-    return Object.defineProperty(o, prop, {value:1, configurable:false, writable: writable, enumerable: enumerable});
+function createUnconfigurableProperty(o, prop, writable = false, enumerable = false) {
+         return Object.defineProperty(o, prop, {value:1, configurable:false, writable: writable, enumerable: enumerable});
 }
 shouldThrow("Object.defineProperty(createUnconfigurableProperty({}, 'foo'), 'foo', {configurable: true})");
 shouldThrow("Object.defineProperty(createUnconfigurableProperty({}, 'foo'), 'foo', {writable: true})");

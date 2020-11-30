@@ -33,7 +33,7 @@ const Stream = stream.Stream;
 
 // Emit random bytes, and keep a shasum
 class RandomReadStream extends Stream {
-  constructor(opt) {
+  constructor(opt = {}) {
     super();
 
     this.readable = true;
@@ -41,7 +41,6 @@ class RandomReadStream extends Stream {
     this._processing = false;
 
     this._hasher = crypto.createHash('sha1');
-    opt = opt || {};
 
     // base block size.
     opt.block = opt.block || 256 * 1024;

@@ -162,8 +162,7 @@ function xhrRequest(url, responseType) {
  * @param {DOMElement} element The element on which to set the attributes.
  * @param {object} An object with keys (serving as attribute names) and values.
  */
-function setAttributes(el, attrs) {
-  attrs = attrs || {}
+function setAttributes(el, attrs = {}) {
   for (var attr in attrs) {
     if (attr !== 'src')
       el.setAttribute(attr, attrs[attr]);

@@ -49,8 +49,7 @@ assertTrue(x === f0.call(x, 1));
 assertTrue(x === f0.call(x, 1, 2));
 
 
-function f1(a) {
-  a = a || 'i';
+function f1(a = 'i') {
   return this[a];
 }
 
@@ -60,9 +59,7 @@ assertEquals(87, f1.call({j:87}, 'j', 1));
 assertEquals(99, f1.call({k:99}, 'k', 1, 2));
 
 
-function f2(a, b) {
-  a = a || 'n';
-  b = b || 2;
+function f2(a = 'n', b = 2) {
   return this[a] + b;
 }
 

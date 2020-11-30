@@ -54,8 +54,7 @@ function org ([cmd, orgname, username, role], cb) {
   )
 }
 
-function orgSet (org, user, role, opts) {
-  role = role || 'developer'
+function orgSet(org, user, role = 'developer', opts) {
   if (!org)
     throw new Error('First argument `orgname` is required.')
 

@@ -35,12 +35,11 @@ function onStream(stream, headers) {
   }));
 }
 
-function verifySecureSession(key, cert, ca, opts) {
+function verifySecureSession(key, cert, ca, opts = { }) {
   const server = h2.createSecureServer({ cert, key });
   server.on('stream', common.mustCall(onStream));
   server.on('close', common.mustCall());
   server.listen(0, common.mustCall(() => {
-    opts = opts || { };
     opts.secureContext = tls.createSecureContext({ ca });
     const client = h2.connect(`https://localhost:${server.address().port}`,
                               opts);

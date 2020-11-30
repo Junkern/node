@@ -14,10 +14,7 @@ for (let i = 0; i < 1000; ++i) {
   }
 
   let counter = 0;
-  array.sort((a, b) => {
-    a = a || [0];
-    b = b || [0];
-
+  array.sort((a = [0], b = [0]) => {
     if (counter++ == rand(30)) {
       array.length = 1;
       gc();

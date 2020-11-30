@@ -13,9 +13,7 @@ for (let j = 0; j < magic0; ++j) {
 
 // Sort, but trim the array at some point.
 let cmp_calls = 0;
-xs.sort((lhs, rhs) => {
-  lhs = lhs || [0];
-  rhs = rhs || [0];
+xs.sort((lhs = [0], rhs = [0]) => {
   if (cmp_calls++ == magic1) xs.length = 1;
   return lhs[0] - rhs[0];
 });

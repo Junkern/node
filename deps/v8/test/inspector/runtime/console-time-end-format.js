@@ -39,8 +39,7 @@ InspectorTest.runAsyncTestSuite([
   }
 ]);
 
-async function checkInterval(time, label) {
-  label = label === undefined ? '\'timeEnd\'' : label;
+async function checkInterval(time, label = '\'timeEnd\'') {
   utils.setCurrentTimeMSForTest(0.0);
   Protocol.Runtime.evaluate({
     expression: `console.log('js: ' + ${time} + ' ms')`

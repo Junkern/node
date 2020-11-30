@@ -60,8 +60,7 @@ class TextOutputStream extends Minipass {
   }
 }
 
-function prettify (data, num, opts) {
-  opts = opts || {}
+function prettify(data, num, opts = {}) {
   var truncate = !opts.long
 
   var pkg = normalizePackage(data, opts)
@@ -167,8 +166,7 @@ function highlightSearchTerms (str, terms) {
   return colorize(str).trim()
 }
 
-function normalizePackage (data, opts) {
-  opts = opts || {}
+function normalizePackage(data, opts = {}) {
   return {
     name: data.name,
     description: opts.description ? data.description : '',

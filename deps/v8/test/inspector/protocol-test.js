@@ -75,9 +75,7 @@ InspectorTest.logObject = function(object, title) {
     }
   }
 
-  function dumpProperties(object, prefix, firstLinePrefix) {
-    prefix = prefix || "";
-    firstLinePrefix = firstLinePrefix || prefix;
+  function dumpProperties(object, prefix = "", firstLinePrefix = prefix) {
     lines.push(firstLinePrefix + "{");
 
     var propertyNames = Object.keys(object);
@@ -92,9 +90,7 @@ InspectorTest.logObject = function(object, title) {
     lines.push(prefix + "}");
   }
 
-  function dumpItems(object, prefix, firstLinePrefix) {
-    prefix = prefix || "";
-    firstLinePrefix = firstLinePrefix || prefix;
+  function dumpItems(object, prefix = "", firstLinePrefix = prefix) {
     lines.push(firstLinePrefix + "[");
     for (var i = 0; i < object.length; ++i)
       dumpValue(object[i], "    " + prefix, "    " + prefix + "[" + i + "] : ");

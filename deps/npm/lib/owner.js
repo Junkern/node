@@ -105,8 +105,7 @@ const ls = async (pkg, opts) => {
   }
 }
 
-const validateAddOwner = (newOwner, owners) => {
-  owners = owners || []
+const validateAddOwner = (newOwner, owners = []) => {
   for (const o of owners) {
     if (o.name === newOwner.name) {
       log.info(

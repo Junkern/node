@@ -8,9 +8,7 @@ const bench = common.createBenchmark(main, {
   n: [1e8]
 });
 
-function oldStyleDefaults(x, y) {
-  x = x || 1;
-  y = y || 2;
+function oldStyleDefaults(x = 1, y = 2) {
   assert.strictEqual(x, 1);
   assert.strictEqual(y, 2);
 }

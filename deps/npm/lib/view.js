@@ -42,11 +42,9 @@ const completion = async (opts, cb) => {
   const fields = getFields(pckmnt).concat(getFields(dv))
   return cb(null, fields)
 
-  function getFields (d, f, pref) {
-    f = f || []
+  function getFields(d, f = [], pref = []) {
     if (!d)
       return f
-    pref = pref || []
     Object.keys(d).forEach(function (k) {
       if (k.charAt(0) === '_' || k.indexOf('.') !== -1)
         return
